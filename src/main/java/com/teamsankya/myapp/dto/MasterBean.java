@@ -3,9 +3,9 @@ package com.teamsankya.myapp.dto;
 public  class MasterBean {
 	
 	
-private Student_infoBean info = new Student_infoBean();
-private StudentAddressInfoBean addr = new StudentAddressInfoBean();
-private StudentGuardianInfoBean gard = new StudentGuardianInfoBean();
+private Student_infoBean info ;
+private StudentAddressInfoBean addr;
+private StudentGuardianInfoBean gard ;
 public Student_infoBean getInfo() {
 	return info;
 }

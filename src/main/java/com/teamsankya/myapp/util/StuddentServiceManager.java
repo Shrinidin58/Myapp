@@ -21,7 +21,7 @@ public class StuddentServiceManager {
 		try {
 			FileReader fileReader = new FileReader(path);
 			properties.load(fileReader);
-		} catch (Exception e1) {
+		} catch (Exception e1) { 
 			e1.printStackTrace();
 		}
 		StudentDao dao = null;

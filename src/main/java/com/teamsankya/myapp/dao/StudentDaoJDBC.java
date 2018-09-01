@@ -22,8 +22,7 @@ public class StudentDaoJDBC implements StudentDao {
 					.getConnection("jdbc:mysql://localhost:3306/studentapp_db?user=root&password=root");
 					PreparedStatement pstmt1 = con.prepareStatement("insert into student_info  values(?,?,?,?)");
 					PreparedStatement pstmt2 = con.prepareStatement("insert into guardian_info  values(?,?,?,?)");
-					PreparedStatement pstmt3 = con
-							.prepareStatement("insert into student_addressinfo  values(?,?,?,?,?,?)");) {
+					PreparedStatement pstmt3 = con.prepareStatement("insert into student_addressinfo  values(?,?,?,?,?,?)");) {
 
 				pstmt1.setInt(1, mbean.getInfo().getRegno());
 				pstmt1.setString(2, mbean.getInfo().getFname());
@@ -41,9 +40,10 @@ public class StudentDaoJDBC implements StudentDao {
 				pstmt3.setString(4, mbean.getAddr().getAddr2());
 				pstmt3.setString(5, mbean.getAddr().getCity());
 				pstmt3.setInt(6, mbean.getAddr().getPincode());
-				pstmt1.execute();
-				pstmt2.execute();
-				pstmt3.execute();
+				boolean p1=pstmt1.execute();
+				boolean p2=pstmt2.execute();
+				boolean p3=pstmt3.execute();
+				System.out.println(p1+" "+p2+" "+p3);
 
 			}
 		} catch (Exception e) {
@@ -65,8 +65,7 @@ public class StudentDaoJDBC implements StudentDao {
 				con.setAutoCommit(false);
 				try (PreparedStatement pstmt = con.prepareStatement("select * from student_info where regno=?");
 						PreparedStatement pstmt2 = con.prepareStatement("select * from guardian_info where regno=?");
-						PreparedStatement pstmt3 = con
-								.prepareStatement("select * from student_addressinfo where regno=?"))
+						PreparedStatement pstmt3 = con.prepareStatement("select * from student_addressinfo where regno=?"))
 
 				{
 					pstmt.setInt(1, id);
@@ -87,7 +86,7 @@ public class StudentDaoJDBC implements StudentDao {
 					pstmt2.setInt(1, id);
 					try (ResultSet rs1 = pstmt2.executeQuery()) {
 						if (rs1.next()) {
-							gard.setRegno(rs1.getInt("regnno"));
+							gard.setRegno(rs1.getInt("regno"));
 							gard.setGfname(rs1.getString("gfname"));
 							gard.setGmname(rs1.getString("gmname"));
 							gard.setGlname(rs1.getString("glname"));
@@ -99,6 +98,7 @@ public class StudentDaoJDBC implements StudentDao {
 					pstmt3.setInt(1, id);
 					try (ResultSet rs2 = pstmt3.executeQuery()) {
 						if (rs2.next()) {
+							System.out.println("Address found");
 							addr.setRegno(rs2.getInt("regno"));
 							addr.setPincode(rs2.getInt("pincode"));
 							addr.setAddr1(rs2.getString("addr1"));
