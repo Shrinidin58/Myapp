@@ -12,15 +12,13 @@ import com.teamsankya.myapp.dao.StudentDao;
 import com.teamsankya.myapp.dto.MasterBean;
 import com.teamsankya.myapp.util.StuddentServiceManager;
 
+
 public class GetStudentServlet extends HttpServlet {
 
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		int id = Integer.parseInt(req.getParameter("regno"));
-		
-		
 		StudentDao dao = StuddentServiceManager
 				.getInstence()
 				.daoGenarater();
@@ -38,9 +36,5 @@ public class GetStudentServlet extends HttpServlet {
 		out.println("Adress Line 2 :"+ bean.getAddr().getAddr2());
 		out.println("City :"+ bean.getAddr().getCity());
 		out.println("Pincode :"+ bean.getAddr().getPincode());
-		
-		
-		
 	}
-
 }

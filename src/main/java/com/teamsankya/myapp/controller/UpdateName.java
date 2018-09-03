@@ -15,12 +15,18 @@ public class UpdateName extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String id = req.getParameter("regno");
-		String name = req.getParameter("fname");
+		String fname = req.getParameter("fname");
+		String mname = req.getParameter("mname");
+		String lname = req.getParameter("lname");
+		String gfname = req.getParameter("gfname");
+		String gmname = req.getParameter("gmname");
+		String glname = req.getParameter("glname");
+		
 		
 		StudentDao dao = StuddentServiceManager
 				.getInstence()
 				.daoGenarater();
-		dao.updateData(Integer.parseInt(id), name);
+		dao.updateData(Integer.parseInt(id), fname);
 		
 		
 	}
